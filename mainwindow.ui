@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PofToBin Ver1.00</string>
+   <string>SplittingTool Ver1.00</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QGroupBox" name="groupBox_2">
@@ -84,7 +84,7 @@
 }</string>
     </property>
     <property name="title">
-     <string>Pof → Bin</string>
+     <string>Bin</string>
     </property>
     <widget class="QLabel" name="label_PofAddr">
      <property name="geometry">
@@ -106,7 +106,7 @@
 font-size:12px;</string>
      </property>
      <property name="text">
-      <string>Pof File Path</string>
+      <string>Bin File Path</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_PofFileConvert">
@@ -198,7 +198,7 @@ font-size:12px;</string>
 font-size:12px;</string>
      </property>
      <property name="text">
-      <string>pof size:</string>
+      <string>src size:</string>
      </property>
     </widget>
     <widget class="QLabel" name="PofSize">
@@ -244,7 +244,7 @@ font-size:12px;</string>
 font-size:12px;</string>
      </property>
      <property name="text">
-      <string>bin size:</string>
+      <string>dst size:</string>
      </property>
     </widget>
     <widget class="QLabel" name="BinSize">

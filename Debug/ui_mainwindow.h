@@ -18,11 +18,9 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -42,15 +40,13 @@ public:
     QLabel *PofSize;
     QLabel *label_PofAddr_4;
     QLabel *BinSize;
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(431, 290);
+        MainWindow->resize(431, 271);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         groupBox_2 = new QGroupBox(centralWidget);
@@ -69,7 +65,7 @@ public:
 "}"));
         textEdit_Log = new QTextEdit(groupBox_2);
         textEdit_Log->setObjectName(QStringLiteral("textEdit_Log"));
-        textEdit_Log->setGeometry(QRect(10, 20, 391, 101));
+        textEdit_Log->setGeometry(QRect(10, 20, 391, 111));
         QFont font1;
         font1.setFamily(QStringLiteral("Arial"));
         textEdit_Log->setFont(font1);
@@ -134,13 +130,6 @@ public:
         BinSize->setStyleSheet(QLatin1String("font-family: \"Arial\";\n"
 "font-size:12px;"));
         MainWindow->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 431, 23));
-        MainWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
@@ -152,15 +141,15 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "PofToBin Ver1.00", Q_NULLPTR));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "SplittingTool Ver1.00", Q_NULLPTR));
         groupBox_2->setTitle(QApplication::translate("MainWindow", "Log", Q_NULLPTR));
-        groupBox_10->setTitle(QApplication::translate("MainWindow", "Pof \342\206\222 Bin", Q_NULLPTR));
-        label_PofAddr->setText(QApplication::translate("MainWindow", "Pof File Path", Q_NULLPTR));
+        groupBox_10->setTitle(QApplication::translate("MainWindow", "Bin", Q_NULLPTR));
+        label_PofAddr->setText(QApplication::translate("MainWindow", "Bin File Path", Q_NULLPTR));
         pushButton_PofFileConvert->setText(QApplication::translate("MainWindow", "Convert", Q_NULLPTR));
         pushButton_PofFileBrowse->setText(QApplication::translate("MainWindow", "Browse...", Q_NULLPTR));
-        label_PofAddr_2->setText(QApplication::translate("MainWindow", "pof size:", Q_NULLPTR));
+        label_PofAddr_2->setText(QApplication::translate("MainWindow", "src size:", Q_NULLPTR));
         PofSize->setText(QString());
-        label_PofAddr_4->setText(QApplication::translate("MainWindow", "bin size:", Q_NULLPTR));
+        label_PofAddr_4->setText(QApplication::translate("MainWindow", "dst size:", Q_NULLPTR));
         BinSize->setText(QString());
     } // retranslateUi
 

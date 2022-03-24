@@ -45,7 +45,7 @@ void MainWindow::on_pushButton_PofFileConvert_clicked()
     strPofFileName = ui->lineEdit_PofFileName->text();
     if(strPofFileName.isEmpty() == true)
     {
-        QMessageBox::warning(this,"Warnning Message", "Please select pof file!");
+        QMessageBox::warning(this,"Warnning Message", "Please select bin file!");
         return;
     }
 
@@ -57,10 +57,10 @@ void MainWindow::on_pushButton_PofFileConvert_clicked()
         return;
     }
 
-    LogDisPlay("Start converting pof file.");
+    LogDisPlay("Start converting bin file.");
 
     i64FileSize = PofFile.size();
-    i64DstBuffSize = i64FileSize-(HeaderSize+EndSize);
+    i64DstBuffSize = i64FileSize;
 
     QString str = QString("0x%1").arg(i64FileSize, 0, 16);
     ui->PofSize->setText(str);
@@ -72,15 +72,15 @@ void MainWindow::on_pushButton_PofFileConvert_clicked()
 
     // get buffer without header and end
     QByteArray PofFileBuff = PofFile.read(i64FileSize);
-    memcpy(pBuffer, PofFileBuff.data()+HeaderSize, i64DstBuffSize);
+    memcpy(pBuffer, PofFileBuff.data(), i64DstBuffSize);
 
     PofFile.close();
 
     // get bin File name
     strBinFileName_L = strPofFileName;
-    strBinFileName_L.replace(".pof","_Low.bin");
+    strBinFileName_L.replace(".bin","_Low.bin");
     strBinFileName_H = strPofFileName;
-    strBinFileName_H.replace(".pof","_High.bin");
+    strBinFileName_H.replace(".bin","_High.bin");
 
     QFile BinFile_L(strBinFileName_L);
     if(BinFile_L.open(QIODevice::ReadWrite|QIODevice::Append) == false)
@@ -128,9 +128,9 @@ void MainWindow::on_pushButton_PofFileBrowse_clicked()
 
     FileName = QFileDialog::getOpenFileName(
     this,
-    tr("Please select .pof file."),
+    tr("Please select .bin file."),
     "",
-    tr("(*.pof)"));
+    tr("(*.bin)"));
 
     ui->lineEdit_PofFileName->setText(FileName);
 
@@ -138,12 +138,12 @@ void MainWindow::on_pushButton_PofFileBrowse_clicked()
     QFile PofFile(FileName);
     if(PofFile.open(QIODevice::ReadOnly) == false)
     {
-        QMessageBox::warning(this,"Warnning Message", "DMA write source file open failed!");
+        QMessageBox::warning(this,"Warnning Message", "Source file open failed!");
         return;
     }
 
     i64FileSize = PofFile.size();
-    i64DstBuffSize = i64FileSize-(HeaderSize+EndSize);
+    i64DstBuffSize = i64FileSize;
 
     QString str = QString("0x%1").arg(i64FileSize, 0, 16);
     ui->PofSize->setText(str);
