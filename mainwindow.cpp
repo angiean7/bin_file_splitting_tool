@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     this->setStyleSheet("background-color:white;");
     ui->setupUi(this);
-    this->setFixedSize(431,260);
+    this->setFixedSize(431,285);
 }
 
 MainWindow::~MainWindow()
@@ -34,6 +34,7 @@ void MainWindow::on_pushButton_PofFileConvert_clicked()
 {
     qint64  i64FileSize     = 0;
     qint64  i64DstBuffSize  = 0;
+    int     baseLen         = 0;
     int     i               = 0;
     int     HeaderSize      = 143;
     int     EndSize         = 97;
@@ -47,6 +48,15 @@ void MainWindow::on_pushButton_PofFileConvert_clicked()
     {
         QMessageBox::warning(this,"Warnning Message", "Please select bin file!");
         return;
+    }
+
+    if(ui->radioButton_32->isChecked())
+    {
+        baseLen = 2;
+    }
+    else
+    {
+        baseLen = 1;
     }
 
     // open pof file
@@ -105,10 +115,10 @@ void MainWindow::on_pushButton_PofFileConvert_clicked()
     QDataStream out_L(&BinFile_L);
     QDataStream out_H(&BinFile_H);
 
-    for(i = 0; (4*i < i64DstBuffSize); i++)
+    for(i = 0; (baseLen*2*i < i64DstBuffSize); i++)
     {
-        out_L.writeRawData((pBuffer+4*i), 2);
-        out_H.writeRawData((pBuffer+(4*i+2)), 2);
+        out_L.writeRawData((pBuffer+baseLen*2*i), baseLen);
+        out_H.writeRawData((pBuffer+(baseLen*2*i+baseLen)), baseLen);
     }
 
     LogDisPlay("Convert bin file succeed!");

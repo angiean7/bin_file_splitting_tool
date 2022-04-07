@@ -14,11 +14,13 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
@@ -40,18 +42,22 @@ public:
     QLabel *PofSize;
     QLabel *label_PofAddr_4;
     QLabel *BinSize;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *horizontalLayout;
+    QRadioButton *radioButton_32;
+    QRadioButton *radioButton_16;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(431, 271);
+        MainWindow->resize(431, 288);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         groupBox_2 = new QGroupBox(centralWidget);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setGeometry(QRect(10, 91, 411, 141));
+        groupBox_2->setGeometry(QRect(10, 120, 411, 140));
         QFont font;
         font.setFamily(QStringLiteral("Arial"));
         font.setBold(true);
@@ -71,7 +77,7 @@ public:
         textEdit_Log->setFont(font1);
         groupBox_10 = new QGroupBox(centralWidget);
         groupBox_10->setObjectName(QStringLiteral("groupBox_10"));
-        groupBox_10->setGeometry(QRect(10, 10, 411, 81));
+        groupBox_10->setGeometry(QRect(10, 10, 411, 111));
         groupBox_10->setFont(font);
         groupBox_10->setStyleSheet(QLatin1String("QGroupBox\n"
 "{\n"
@@ -87,7 +93,7 @@ public:
 "font-size:12px;"));
         pushButton_PofFileConvert = new QPushButton(groupBox_10);
         pushButton_PofFileConvert->setObjectName(QStringLiteral("pushButton_PofFileConvert"));
-        pushButton_PofFileConvert->setGeometry(QRect(310, 50, 80, 23));
+        pushButton_PofFileConvert->setGeometry(QRect(310, 80, 80, 23));
         pushButton_PofFileConvert->setFont(font);
         pushButton_PofFileConvert->setStyleSheet(QLatin1String("background-color: rgb(85, 170, 255);\n"
 "font-family: \"Arial\";\n"
@@ -107,7 +113,7 @@ public:
         lineEdit_PofFileName->setStyleSheet(QStringLiteral(""));
         label_PofAddr_2 = new QLabel(groupBox_10);
         label_PofAddr_2->setObjectName(QStringLiteral("label_PofAddr_2"));
-        label_PofAddr_2->setGeometry(QRect(10, 50, 51, 16));
+        label_PofAddr_2->setGeometry(QRect(10, 80, 51, 16));
         label_PofAddr_2->setFont(font1);
         label_PofAddr_2->setStyleSheet(QLatin1String("font-family: \"Arial\";\n"
 "font-size:12px;"));
@@ -119,7 +125,7 @@ public:
 "font-size:12px;"));
         label_PofAddr_4 = new QLabel(groupBox_10);
         label_PofAddr_4->setObjectName(QStringLiteral("label_PofAddr_4"));
-        label_PofAddr_4->setGeometry(QRect(150, 50, 51, 16));
+        label_PofAddr_4->setGeometry(QRect(150, 80, 51, 16));
         label_PofAddr_4->setFont(font1);
         label_PofAddr_4->setStyleSheet(QLatin1String("font-family: \"Arial\";\n"
 "font-size:12px;"));
@@ -129,6 +135,28 @@ public:
         BinSize->setFont(font1);
         BinSize->setStyleSheet(QLatin1String("font-family: \"Arial\";\n"
 "font-size:12px;"));
+        horizontalLayoutWidget = new QWidget(groupBox_10);
+        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setGeometry(QRect(10, 47, 294, 31));
+        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        radioButton_32 = new QRadioButton(horizontalLayoutWidget);
+        radioButton_32->setObjectName(QStringLiteral("radioButton_32"));
+        radioButton_32->setStyleSheet(QLatin1String("font-family: \"Arial\";\n"
+"font-size:12px;"));
+
+        horizontalLayout->addWidget(radioButton_32);
+
+        radioButton_16 = new QRadioButton(horizontalLayoutWidget);
+        radioButton_16->setObjectName(QStringLiteral("radioButton_16"));
+        radioButton_16->setStyleSheet(QLatin1String("font-family: \"Arial\";\n"
+"font-size:12px;"));
+
+        horizontalLayout->addWidget(radioButton_16);
+
         MainWindow->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
@@ -151,6 +179,8 @@ public:
         PofSize->setText(QString());
         label_PofAddr_4->setText(QApplication::translate("MainWindow", "dst size:", Q_NULLPTR));
         BinSize->setText(QString());
+        radioButton_32->setText(QApplication::translate("MainWindow", "32bit to 16bit", Q_NULLPTR));
+        radioButton_16->setText(QApplication::translate("MainWindow", "16bit to 8bit", Q_NULLPTR));
     } // retranslateUi
 
 };
